@@ -1,0 +1,9 @@
+{
+  "builders": [
+    {
+      "type": "docker",
+      "image": "centos:7",
+      "export_path": "build/website.tar"
+    }
+  ]
+}
