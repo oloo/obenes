@@ -14,7 +14,7 @@ resource "digitalocean_droplet" "ci" {
   image = "centos-7-x64"
   name = "ci"
   region = "nyc2"
-  size = "1gb"
+  size = "2gb"
   ssh_keys = [
     "${digitalocean_ssh_key.obenes_key.fingerprint}"]
 
