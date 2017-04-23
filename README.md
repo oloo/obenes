@@ -1,7 +1,7 @@
-#Infrastructure
+# Infrastructure
 Infrastructure project to setup both infrastructure and CI for The Obenes website
 
-##Current Tech Stack
+## Current Tech Stack
 - Digital Ocean
 - Terraform
 - Docker
