@@ -20,13 +20,11 @@ resource "digitalocean_droplet" "ci" {
 
   provisioner "remote-exec" {
     inline = [
-      "yum update -y",
       "yum install docker -y",
       "systemctl start docker",
       "systemctl status docker",
       "systemctl enable docker",
-      "docker run -itd -p80:8153 -p8154:8154 --name gocd-server gocd/gocd-server:v17.3.0",
-      "sleep 1m",
+      "docker run -itd -p8153:8153 -p8154:8154 --name gocd-server gocd/gocd-server:v17.3.0",
       "docker run -itd --name gocd-agent -e GO_SERVER_URL=https://$(docker inspect --format='{{(index (index .NetworkSettings.IPAddress))}}' gocd-server):$(docker inspect --format='{{(index (index .NetworkSettings.Ports \"8154/tcp\") 0).HostPort}}' gocd-server)/go gocd/gocd-agent-centos-7:v17.3.0"
     ]
     connection {
@@ -46,7 +44,6 @@ resource "digitalocean_droplet" "website" {
 
   provisioner "remote-exec" {
     inline = [
-      "yum update -y",
       "yum install java-1.8.0-openjdk-devel -y"
     ]
 
